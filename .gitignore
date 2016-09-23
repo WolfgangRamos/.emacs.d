@@ -1,0 +1,15 @@
+# ignore all files and directories except
+#
+# - init.el,  
+# - .gitignore
+# - README.md
+# - wra/
+#
+/*
+!init.el
+!.gitignore
+!README.md
+!wra/
+
+# ignore temp files in all whitlisted directories
+*~
