@@ -92,10 +92,6 @@
 ;;(setq org-latex-create-formula-image-program 'dvipng)
 (setq org-latex-create-formula-image-program 'imagemagick)
 
-;; additional packages
-(add-to-list 'org-latex-packages-alist '("" "wraorgpreview" t))
-;;(add-to-list 'org-latex-packages-alist '("" "mathrsfs" t))
-
 ;; translator orgtbl -> java array
 (defun orgtbl-to-java-array (table params)
   "Convert the orgtbl-mode TABLE to a java array."
@@ -108,7 +104,14 @@
 ;; latex export
 (require 'ox-latex)
 
-;; latex class se_kcss
+;; allow '#+BIND' keyword in org header
+(setq org-export-allow-bind-keywords t)
+
+;; additional packages
+(add-to-list 'org-latex-packages-alist '("" "wraorgpreview" t))
+;;(add-to-list 'org-latex-packages-alist '("" "mathrsfs" t))
+
+;; add latex class kcssproposal
 (add-to-list 'org-latex-classes
 			 '("kcssproposal"
 			   "\\documentclass{kcssproposal}
@@ -123,12 +126,10 @@
 			   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
 			 )
 
-;; allow '#+BIND' keyword in org header
-(setq org-export-allow-bind-keywords t)
-
 ;; globally disable export of pdf meta data using hyperref
 (setq org-latex-with-hyperref t)
 
+;; set latex-to-pdf export process
 (setq org-latex-pdf-process '("latexmk -pdf %f"))
 
 ;; functions to publish my cs_wiki
